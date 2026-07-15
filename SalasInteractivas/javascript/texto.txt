@@ -1,0 +1,10 @@
+que es javascript y como se ejecuta?
+JS es un lenguaje de programacion ligero, interpretado y orientado a objetos con funciones de primera clase
+
+variables y tipos de datos (let, const, var)
+const = para valores que no cambiaran durante la ejecucion 
+let = para variables cuyo valor cambiara y que se limitan al bloque donde fueron declaras
+
+tipos de datos:
+Primitive: String, Number, Boolean, (true/false), Null, Undefined
+Composite: Array (arreglos), Object (objetos)

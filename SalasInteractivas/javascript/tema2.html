@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 2 - Estructuras y Funciones</title>
+</head>
+<body>
+    <h2>Evaluacion de Rendimiento Academico</h2>
+    <script>
+        const notas = [75,58,90,82,60];
+
+        //Funcion tradicional
+        function calcular(a,b){
+            
+            return a+b;
+        }
+
+
+        // Funcion flecha para evualuar estado
+        const evualuarNota = (nota) => {
+            if (nota>=65) {
+                return "Aprobado";
+            } else if (nota>= 60 && nota < 65){
+                return "Suficiente (derecho a recuperacion)";
+
+            }else{
+                return "Reprobado";
+            }
+        };
+
+        // buble for para recorrer las notas
+        console.log("----- Reporte de Notas -----");
+
+        for (let i = 0; i < notas.length; i++){
+            let resultado = evualuarNota(notas[i]);
+            console.log(`Estudiante #${i + 1}: Nota ${notas[i]} - ${resultado}`);
+        }
+
+
+    </script>
+   
+</body>
+</html>

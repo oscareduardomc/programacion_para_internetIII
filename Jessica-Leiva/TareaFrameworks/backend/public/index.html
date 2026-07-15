@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>ToDo</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+  <input type="text" ng-model="newTask">
+  <button ng-click="addTask()">Agregar</button>
+
+  <ul>
+    <li ng-repeat="task in tasks">
+      {{ task.titulo }}
+      <button ng-click="deleteTask(task.id)">Borrar</button>
+    </li>
+  </ul>
+
+  <script>
+    const app = angular.module('app', []);
+
+    app.controller('MainCtrl', function($scope, $http) {
+      $scope.tasks = [];
+
+      function loadTasks() {
+        $http.get('/api/tasks').then(function(response) {
+          $scope.tasks = response.data;
+        });
+      }
+
+      loadTasks();
+
+      $scope.addTask = function() {
+        if (!$scope.newTask) return;
+        $http.post('/api/tasks', { titulo: $scope.newTask }).then(function(response) {
+          $scope.tasks = response.data;
+          $scope.newTask = '';
+        });
+      };
+
+      $scope.deleteTask = function(id) {
+        $http.delete('/api/tasks/' + id).then(function() {
+          loadTasks();
+        });
+      };
+    });
+  </script>
+</body>
+</html>

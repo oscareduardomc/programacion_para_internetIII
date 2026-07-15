@@ -1,0 +1,96 @@
+<?php 
+require_once('./config/conexion.php');
+
+class TallerController{
+    
+    public static function listarCategorias(){
+        global $conexion;
+        $stmt = $conexion->prepare("SELECT * FROM categoria_repuesto ORDER BY id DESC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public static function guardarCategoria($nombre_categoria, $descripcion) {
+        global $conexion;
+
+        $stmt = $conexion->prepare("INSERT INTO categoria_repuesto (nombre_categoria, descripcion) VALUES (:nombre_categoria, :descripcion)");
+        $stmt->bindParam(":nombre_categoria", $nombre_categoria);
+        $stmt->bindParam(":descripcion", $descripcion);
+
+        if ($stmt->execute()) {
+            header("Location: index.php?action=categorias&msg=guardado");
+        
+        }
+    }
+
+
+    public static function listarRespuestos(){
+        global $conexion;
+        $stmt = $conexion->prepare("SELECT r. * , c.nombre_categoria FROM repuestos r INNER JOIN categoria_repuesto c  on r.id_categoria = c.id WHERE r.estado_activo = 1 ORDER BY r.id DESC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public static function guardarRepuesto($codigo_pieza, $nombre, $id_categoria, $stock, $precio) {
+        global $conexion;
+        $stmt = $conexion->prepare("INSERT INTO repuestos (codigo_pieza, nombre, id_categoria, stock, precio, estado_activo) VALUES (:codigo_pieza, :nombre, :id_categoria, :stock, :precio, 1)");
+        $stmt->bindParam(":codigo_pieza", $codigo_pieza);
+        $stmt->bindParam(":nombre", $nombre);
+        $stmt->bindParam(":id_categoria", $id_categoria);
+        $stmt->bindParam(":stock", $stock);
+        $stmt->bindParam(":precio", $precio);
+
+        if ($stmt->execute()) {
+            header("Location: index.php?msg=guardado");
+        }
+    }
+
+    public static function obtenerPorId($id) {
+        global $conexion;
+        $stmt = $conexion->prepare("SELECT * FROM repuestos WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function editarRepuesto($id, $codigo_pieza, $nombre, $id_categoria, $stock, $precio) {
+        global $conexion;
+
+        $stmt = $conexion->prepare("UPDATE repuestos SET codigo_pieza = :codigo_pieza, nombre = :nombre, id_categoria = :id_categoria, stock = :stock, precio = :precio WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":codigo_pieza", $codigo_pieza);
+        $stmt->bindParam(":nombre", $nombre);
+        $stmt->bindParam(":id_categoria", $id_categoria);
+        $stmt->bindParam(":stock", $stock);
+        $stmt->bindParam(":precio", $precio);
+
+        if ($stmt->execute()) {
+            header("Location: index.php?msg=actualizado");
+        }
+    }
+
+    public static function desactivarRepuesto($id) {
+        global $conexion;
+        $stmt = $conexion->prepare("UPDATE repuestos SET estado_activo = 0 WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        if ($stmt->execute()) {
+            header("Location: index.php?msg=desactivado");
+        }
+    }
+
+    public static function EliminarRepuesto($id){
+        global $conexion;
+        $stmt = $conexion->prepare("DELETE FROM repuestos WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        if ($stmt->execute()){
+            header("Location: index.php?msg=eliminado");
+        }
+       
+
+    }
+
+}
+
+?>

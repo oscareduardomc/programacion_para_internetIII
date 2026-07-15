@@ -1,0 +1,36 @@
+<?php
+// =========================================================================
+// 📌 NOTAS DE CLASE: REGLAS DE VARIABLES EN PHP
+// =========================================================================
+
+// 1️⃣ EL SIGNO DE DÓLAR ($) ES OBLIGATORIO
+// Toda variable debe iniciar con $. Sin él, PHP da error.
+$edad = 20; 
+
+
+// 2️⃣ ES SENSIBLE A MAYÚSCULAS Y MINÚSCULAS (Case-Sensitive)
+// Estas dos variables son totalmente diferentes para el servidor:
+$miEdad = 25;
+$miedad = 30;
+
+
+// 3️⃣ 🚨 REGLAS DE ORO (LO QUE NUNCA DEBES HACER)
+// ❌ MAL: No empezar con números -> $1puesto = "Juan";
+// ❌ MAL: No usar espacios      -> $precio total = 100;
+
+//  BIEN: Así se deben escribir:
+$puesto1 = "Juan";
+$precio_total = 100; // Usando guion bajo
+$precioTotal = 100;  // Usando mayúscula intermedia (CamelCase)
+
+
+// 4️⃣ TIPADO DINÁMICO
+// PHP detecta el tipo de dato automáticamente según lo que guardes.
+$entero   = 9;       // Número entero (Integer)
+$decimal  = 9.3;     // Número decimal (Float)
+$texto    = "hola";  // Texto (String)
+
+// =========================================================================
+// Protip: Usa siempre $precioTotal o $precio_total.
+// =========================================================================
+?>

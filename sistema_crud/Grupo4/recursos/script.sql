@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS sistema_empleados;
+USE sistema_empleados;
+
+CREATE TABLE empleados (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    puesto VARCHAR(50) DEFAULT NULL,
+    salario DECIMAL(10,2) DEFAULT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    activo TINYINT(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

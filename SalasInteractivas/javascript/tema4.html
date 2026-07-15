@@ -1,0 +1,56 @@
+<!-- Manejo de eventos en el navegador
+Que es un evento?
+es una accion o suceso detectado por el navegador que ocurre sobre un elemeto HTML(un clic, presionar una tecla)
+enviar un formulario, cambiar el valor de un campo, etc.
+
+El metodo
+es la forma recomendada de escuchar evetos, ya que separa por completo la estructura HTML del comportamiento
+de JavaScript
+Sintaxis: elemento.addEventListener("tipo_evento", funcion_a_ejecutar) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 4 - Eventos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5" style="max-width: 500px;">
+    <div class="card p-4 border-primary">
+        <h4>Simulador de Facturacion</h4>
+        <div class="mb-3">
+            <label class="form-label">Monto de Compra ($)</label>
+            <input type="number" id="txtMonto" class="form-control" placeholder="Ej. 1500">
+        </div>
+        <button id="btnCalcular" class="btn btn-primary w-100">Aplicar Descuento Especial</button>
+        <h5 class="mt-4 text-success" id="lblResultado"></h5>
+    </div>
+
+    <script>
+        // Seleccionamos elementos
+        const txtMonto = document.getElementById("txtMonto");
+        const btnCalcular = document.getElementById("btnCalcular");
+        const lblResultado = document.getElementById("lblResultado");
+
+        //Escuchamos el evento click del boton
+        btnCalcular.addEventListener("click", () => {
+            //Convertimos la entrada a numero decimal
+            let monto = parseFloat(txtMonto.value);
+            if (isNaN(monto) || monto <= 0){
+                alert("Por favor ingrese un monto valido mayor a cero");
+                return;
+            }
+
+            //Logica: Si compra mas de $1000, 15% de decuento
+            let descuento = 0;
+            if (monto> 1000){
+                descuento = monto * 0.15;
+            }
+
+            let totalFinal = monto - descuento;
+            //Renderizamos en el DOM
+            lblResultado.innerHTML = `Descuento aplicado: $${descuento.toFixed(2)}<br>Total a Pagar: $${totalFinal.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
