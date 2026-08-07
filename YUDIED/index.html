@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="TareaController">
+
+    <h1>Lista de tareas</h1>
+
+    <input type="text" ng-model="titulo" placeholder="Nueva tarea">
+
+    <button ng-click="agregar()">
+        Agregar
+    </button>
+
+    <h3>Tareas pendientes:</h3>
+
+    <ul>
+        <li ng-repeat="tarea in tareas">
+            {{ tarea.titulo }}
+
+            <button ng-click="eliminar(tarea.id)">
+                Eliminar
+            </button>
+        </li>
+    </ul>
+
+
+<script>
+
+var app = angular.module("todoApp", []);
+
+app.controller("TareaController", function($scope, $http){
+
+    $scope.tareas = [];
+
+    $scope.cargar = function(){
+
+        $http.get("http://127.0.0.1:8000/api/tareas")
+        .then(function(response){
+
+            $scope.tareas = response.data;
+
+        });
+
+    };
+
+
+    $scope.agregar = function(){
+
+        $http.post("http://127.0.0.1:8000/api/tareas", {
+            titulo: $scope.titulo
+        })
+        .then(function(){
+
+            $scope.titulo = "";
+            $scope.cargar();
+
+        });
+
+    };
+
+
+    $scope.eliminar = function(id){
+
+        $http.delete("http://127.0.0.1:8000/api/tareas/" + id)
+        .then(function(){
+
+            $scope.cargar();
+
+        });
+
+    };
+
+
+    $scope.cargar();
+
+});
+
+</script>
+
+</body>
+
+</html>
