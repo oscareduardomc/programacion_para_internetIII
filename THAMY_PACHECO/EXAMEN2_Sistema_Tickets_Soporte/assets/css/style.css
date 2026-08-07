@@ -1,0 +1,218 @@
+body {
+    background: #f4f6f9;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 25px;
+    transition: all .3s ease;
+}
+
+@media (max-width: 991px) {
+    .content {
+        margin-left: 0;
+    }
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
+}
+
+.table thead {
+    background: #0d6efd;
+    color: white;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #212529;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    color: white;
+    transition: all .3s ease;
+    z-index: 1040;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.sidebar-header h4 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    background: #0d6efd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    width: 100%;
+}
+
+.menu li a {
+    display: flex;
+    align-items: center;
+    color: #dee2e6;
+    padding: 13px 20px;
+    transition: .3s;
+    font-weight: 500;
+}
+
+.menu li a:hover, .menu li a.active {
+    background: #0d6efd;
+    color: white;
+}
+
+.menu li a i {
+    width: 25px;
+    font-size: 1.1rem;
+}
+
+.titulo {
+    padding: 15px 20px 8px;
+    color: #adb5bd;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.navbar {
+    margin-left: 250px;
+    height: 65px;
+    transition: all .3s ease;
+    z-index: 1030;
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        margin-left: 0;
+    }
+}
+
+.sidebar.cerrado {
+    margin-left: -250px;
+}
+
+.content.expandido {
+    margin-left: 0;
+}
+
+.navbar.expandido {
+    margin-left: 0;
+}
+
+/* ========================================================
+   ALERTAS VISUALES Y ESTILOS SEGÚN PRIORIDAD Y ESTADO
+   ======================================================== */
+
+/* Prioridad Alta: Fondo o texto rojo */
+.tr-prioridad-alta {
+    background-color: rgba(220, 53, 69, 0.08) !important;
+    border-left: 4px solid #dc3545 !important;
+}
+
+.text-prioridad-alta {
+    color: #dc3545 !important;
+    font-weight: 700;
+}
+
+.badge-prioridad-alta {
+    background-color: #dc3545 !important;
+    color: #ffffff;
+}
+
+/* Prioridad Media / Baja */
+.badge-prioridad-media {
+    background-color: #fd7e14 !important;
+    color: #ffffff;
+}
+
+.badge-prioridad-baja {
+    background-color: #6c757d !important;
+    color: #ffffff;
+}
+
+/* Estado Pendiente: Fondo o badge amarillo */
+.tr-estado-pendiente {
+    background-color: rgba(255, 193, 7, 0.12) !important;
+}
+
+.badge-estado-pendiente {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+    font-weight: 600;
+}
+
+/* Estado En Proceso: Badge o fondo azul */
+.tr-estado-enproceso {
+    background-color: rgba(13, 110, 253, 0.08) !important;
+}
+
+.badge-estado-enproceso {
+    background-color: #0d6efd !important;
+    color: #ffffff;
+}
+
+/* Estado Resuelto: Fondo o badge verde */
+.tr-estado-resuelto {
+    background-color: rgba(25, 135, 84, 0.1) !important;
+}
+
+.badge-estado-resuelto {
+    background-color: #198754 !important;
+    color: #ffffff;
+}
+
+.card-dashboard {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
+    transition: transform 0.2s ease;
+}
+
+.card-dashboard:hover {
+    transform: translateY(-3px);
+}
+
+.card-dashboard .icono {
+    font-size: 40px;
+    opacity: 0.8;
+}
