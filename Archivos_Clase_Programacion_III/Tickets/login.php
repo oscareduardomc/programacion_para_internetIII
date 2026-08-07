@@ -1,0 +1,125 @@
+<?php
+session_start();
+require "db.php"; 
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM usuarios WHERE email = '$email' AND password = '$password'";
+    $resultado = $conn->query($sql);
+
+    if ($resultado && $resultado->num_rows > 0) {
+        $usuario = $resultado->fetch_assoc();
+
+        $_SESSION['user_id'] = $usuario['id'];
+        $_SESSION['nombre'] = $usuario['nombre'];
+        $_SESSION['rol'] = $usuario['rol'];
+        $_SESSION['email'] = $usuario['email'];
+
+        header("Location: dashboard.php");
+        exit();
+    } else {
+
+        $_SESSION['mensaje'] = "Correo o contraseña incorrectos.";
+        $_SESSION['tipo'] = "danger";
+        header("Location: login.php");
+        exit();
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Sistema de Tickets</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="assets/css/styleLogin.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="card login-card">
+            <div class="login-header text-center pt-4" >
+                <i class="fa-solid fa-headset fa-3x text-primary mb-2"></i>
+                <h3>Sistema de Tickets</h3>
+                <p class="text-muted">Inicia sesión para continuar</p>
+            </div>
+
+            <div class="card-body p-4">
+       
+                <?php
+                    if (isset($_SESSION['mensaje'])){
+                        $tipo = isset($_SESSION['tipo']) ? $_SESSION['tipo'] : 'danger';
+                ?>
+                <div class="alert alert-<?php echo $tipo; ?> alert-dismissible fade show">
+                    <?php echo $_SESSION['mensaje'];?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <?php
+                    unset($_SESSION['mensaje']);
+                    unset($_SESSION['tipo']);
+                }
+                ?>
+
+                <form action="login.php" method="POST" class="card p-4 shadow mt-4 mx-auto" style="max-width: 500px;" autocomplete="off">
+                    <div class="mb-3">
+                        <label class="form-label">Correo Electrónico</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <input type="email" name="email" class="form-control" placeholder="Ingrese su correo" required autofocus>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Clave</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Ingrese su clave" required>
+                            <button type="button" class="btn btn-outline-secondary" onclick="mostrarPassword()">
+                                <i class="fa-solid fa-eye" id="iconoPassword"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-login">
+                            <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="footer-login text-center mt-3 text-muted">
+            Sistema de Gestión de Incidencias.
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function mostrarPassword(){
+            const password = document.getElementById("password");
+            const icono = document.getElementById("iconoPassword");
+
+            if (password.type === "password"){
+                password.type = "text";
+                icono.classList.remove("fa-eye");
+                icono.classList.add("fa-eye-slash");
+            } else {
+                password.type = "password";
+                icono.classList.remove("fa-eye-slash");
+                icono.classList.add("fa-eye");
+            }
+        }
+    </script>
+</body>
+</html>
