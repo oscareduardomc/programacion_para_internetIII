@@ -1,0 +1,90 @@
+/* =====================================================
+   ESTILOS DEL LOGIN
+   ===================================================== */
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d6efd, #0b3d91);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgb(0, 0, 0, 0.25);
+}
+
+.login-header {
+    text-align: center;
+    padding: 30px 20px 10px;
+}
+
+.login-header i {
+    font-size: 60px;
+    color: #0d6efd;
+}
+
+.login-header h3 {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.form-control {
+    height: 48px;
+}
+
+.input-group-text {
+    width: 48px;
+    justify-content: center;
+}
+
+.btn-login {
+    height: 45px;
+    font-weight: bold;
+}
+
+.footer-login {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    font-size: 14px;
+}
+
+/* =====================================================
+   ALERTAS VISUALES DE LOS TICKETS
+   ===================================================== */
+
+/* Prioridad Alta: fila con fondo rojo */
+.prioridad-alta {
+    background-color: #f8d7da !important;
+}
+
+/* Prioridad Media: fila con fondo claro */
+.prioridad-media {
+    background-color: #fff3cd !important;
+}
+
+/* Estado Pendiente: badge amarillo */
+.badge-pendiente {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+/* Estado En Proceso: badge azul */
+.badge-proceso {
+    background-color: #0d6efd;
+    color: white;
+}
+
+/* Estado Resuelto: badge verde */
+.badge-resuelto {
+    background-color: #28a745;
+    color: white;
+}
