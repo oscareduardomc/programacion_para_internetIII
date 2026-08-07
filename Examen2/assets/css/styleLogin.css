@@ -1,0 +1,39 @@
+body {
+    background: #f4f6f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.10);
+}
+
+.login-header {
+    background: #0d6efd;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 12px 12px 0 0;
+}
+
+.login-header i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.login-header h4 {
+    margin: 0 0 5px 0;
+}
+
+.login-header p {
+    margin: 0;
+    opacity: .85;
+    font-size: 14px;
+}
