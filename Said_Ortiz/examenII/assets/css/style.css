@@ -1,0 +1,52 @@
+tr.prioridad-alta {
+    background-color: #fee2e2 !important;
+}
+
+tr.prioridad-alta td {
+    color: #991b1b;
+}
+
+.badge-pendiente {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badge-resuelto {
+    background-color: #198754;
+    color: #fff;
+}
+
+.badge-proceso {
+    background-color: #0dcaf0;
+    color: #212529;
+}
+
+.badge-prioridad-alta {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.badge-prioridad-media {
+    background-color: #fd7e14;
+    color: #fff;
+}
+
+.badge-prioridad-baja {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.descripcion-corta {
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.errores-validacion {
+    display: none;
+}
+
+.errores-validacion.visible {
+    display: block;
+}
