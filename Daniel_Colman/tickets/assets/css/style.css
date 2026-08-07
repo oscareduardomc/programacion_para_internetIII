@@ -1,0 +1,23 @@
+
+
+/* Prioridad Alta */
+.table-danger {
+    background-color: #f8d7da !important;
+}
+
+/* Estado Pendiente */
+.badge-pendiente {
+    background-color: #ffc107;
+    color: #000;
+}
+
+/* Estado En Proceso */
+.badge-proceso {
+    background-color: #0dcaf0;
+    color: #000;
+}
+
+/* Estado Resuelto */
+.badge-resuelto {
+    background-color: #198754;
+}
