@@ -1,0 +1,21 @@
+   
+    .prioridad-alta { background-color: #ffe6e6; }
+    .prioridad-alta td, .prioridad-alta { color: #b30000; }
+
+    
+    .badge-pendiente { background-color: #ffe680; color: #7a5a00; }
+    .badge-resuelto { background-color: #d4edda; color: #155724; }
+
+
+    .badge-en-proceso { background-color: #cfe2ff; color: #0b3a7a; }
+
+      .card-dashboard{
+        border:none;
+        border-radius:12px;
+        box-shadow:0 0 10px rgba(0,0,0,.08);
+    }
+
+    .icono{
+        font-size:35px;
+        opacity:.25;
+    }
